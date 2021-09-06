@@ -15,18 +15,31 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.paint.RadialGradient?>
+<?import javafx.scene.paint.Stop?>
 <?import javafx.scene.text.Font?>
 
 <VBox fx:id="vbxCreateAccount" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="504.0" prefWidth="500.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <Pane prefHeight="126.0" prefWidth="600.0">
+      <Pane prefHeight="126.0" prefWidth="600.0" style="-fx-background-color: lightblue;">
          <children>
             <Label layoutX="173.0" layoutY="63.0" text="Create your Account">
                <font>
-                  <Font name="System Bold" size="17.0" />
+                  <Font name="Microsoft JhengHei UI Bold" size="17.0" />
                </font>
+               <textFill>
+                  <RadialGradient centerX="0.4222222222222222" centerY="0.6666666666666666" radius="0.5">
+                     <stops>
+                        <Stop color="#2275a8" />
+                        <Stop color="#546b79" offset="1.0" />
+                     </stops>
+                  </RadialGradient>
+               </textFill>
             </Label>
-            <Label alignment="CENTER" layoutX="198.0" layoutY="46.0" prefHeight="17.0" prefWidth="114.0" text="Join to classroom" />
+            <Label alignment="CENTER" layoutX="198.0" layoutY="46.0" prefHeight="17.0" prefWidth="114.0" text="Join to classroom" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font></Label>
          </children>
       </Pane>
       <GridPane fx:id="gpCreateAccount" VBox.vgrow="ALWAYS">
@@ -47,16 +60,40 @@
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="17.0" prefWidth="304.0" text="Password" GridPane.rowIndex="1" />
-            <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="17.0" prefWidth="298.0" text="Username" />
-            <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="17.0" prefWidth="304.0" text="Profile photo" GridPane.rowIndex="2" />
-            <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="17.0" prefWidth="304.0" text="Gender" GridPane.rowIndex="3" />
-            <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="17.0" prefWidth="304.0" text="Career" GridPane.rowIndex="4" />
-            <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="17.0" prefWidth="304.0" text="Birthday" GridPane.rowIndex="5" />
-            <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="17.0" prefWidth="304.0" text="Favorite Browser" GridPane.rowIndex="6" />
+            <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="17.0" prefWidth="304.0" text="Password" GridPane.rowIndex="1">
+               <font>
+                  <Font size="15.0" />
+               </font></Label>
+            <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="17.0" prefWidth="298.0" text="Username">
+               <font>
+                  <Font size="15.0" />
+               </font></Label>
+            <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="17.0" prefWidth="304.0" text="Profile photo" GridPane.rowIndex="2">
+               <font>
+                  <Font size="15.0" />
+               </font></Label>
+            <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="17.0" prefWidth="304.0" text="Gender" GridPane.rowIndex="3">
+               <font>
+                  <Font size="16.0" />
+               </font></Label>
+            <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="17.0" prefWidth="304.0" text="Career" GridPane.rowIndex="4">
+               <font>
+                  <Font size="15.0" />
+               </font></Label>
+            <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="17.0" prefWidth="304.0" text="Birthday" GridPane.rowIndex="5">
+               <font>
+                  <Font size="15.0" />
+               </font></Label>
+            <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="17.0" prefWidth="304.0" text="Favorite Browser" GridPane.rowIndex="6">
+               <font>
+                  <Font size="15.0" />
+               </font></Label>
             <TextField fx:id="txtCreateUsername" GridPane.columnIndex="1" />
             <PasswordField fx:id="passwordFCreate" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-            <Button fx:id="btnBrowser" mnemonicParsing="false" onAction="#searchProfilePhoto" prefHeight="25.0" prefWidth="61.0" text="Browser" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+            <Button fx:id="btnBrowser" mnemonicParsing="false" onAction="#searchProfilePhoto" prefHeight="25.0" prefWidth="61.0" style="-fx-background-color: gray;" text="Browser" textFill="WHITE" GridPane.columnIndex="2" GridPane.rowIndex="2">
+               <font>
+                  <Font name="System Bold" size="11.0" />
+               </font></Button>
             <TextField fx:id="txtUrlProfilePhoto" editable="false" GridPane.columnIndex="1" GridPane.rowIndex="2" />
             <Pane fx:id="paneForGender" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
                <children>
@@ -72,12 +109,18 @@
             <DatePicker fx:id="dpBirthday" GridPane.columnIndex="1" GridPane.rowIndex="5" />
             <Pane prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="8">
                <children>
-                  <Button fx:id="btnSigInFfromCreate" layoutX="114.0" layoutY="2.0" mnemonicParsing="false" onAction="#directToHomeFromCreate" text="Sig in" />
+                  <Button fx:id="btnSigInFfromCreate" layoutX="111.0" layoutY="-1.0" mnemonicParsing="false" onAction="#directToHomeFromCreate" style="-fx-background-color: gray;" text="Sig in" textFill="WHITE">
+                     <font>
+                        <Font size="15.0" />
+                     </font></Button>
                </children>
             </Pane>
             <Pane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="8">
                <children>
-                  <Button fx:id="btnCreateAccount" layoutX="38.0" layoutY="2.0" mnemonicParsing="false" onAction="#createAccount" text="Create account" />
+                  <Button fx:id="btnCreateAccount" layoutX="38.0" layoutY="-1.0" mnemonicParsing="false" onAction="#createAccount" style="-fx-background-color: gray;" text="Create account" textFill="#fcfafa">
+                     <font>
+                        <Font size="15.0" />
+                     </font></Button>
                </children>
             </Pane>
             <MenuButton fx:id="mnbtnFBrowser" mnemonicParsing="false" text="Choose your favorite browser" GridPane.columnIndex="1" GridPane.rowIndex="6">
@@ -89,9 +132,21 @@
             </MenuButton>
             <Pane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="4">
                <children>
-                  <CheckBox fx:id="chbxTE" layoutY="6.0" mnemonicParsing="false" text="Telematic" />
-                  <CheckBox fx:id="chbxSE" layoutY="27.0" mnemonicParsing="false" text="Software" />
-                  <CheckBox fx:id="chbxIE" layoutY="49.0" mnemonicParsing="false" text="Industrial" />
+                  <CheckBox fx:id="chbxTE" layoutY="6.0" mnemonicParsing="false" text="Telematic Engineering">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </CheckBox>
+                  <CheckBox fx:id="chbxSE" layoutY="27.0" mnemonicParsing="false" text="Software Engineering">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </CheckBox>
+                  <CheckBox fx:id="chbxIE" layoutY="49.0" mnemonicParsing="false" text="Industrial Engineering">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </CheckBox>
                </children>
             </Pane>
          </children>

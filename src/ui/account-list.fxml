@@ -8,20 +8,29 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
-
+<?import javafx.scene.text.Font?>
 
 <VBox prefHeight="341.0" prefWidth="601.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <Pane prefHeight="124.0" prefWidth="601.0">
+      <Pane prefHeight="124.0" prefWidth="601.0" style="-fx-background-color: lightblue;">
          <children>
             <ImageView fx:id="imgProfilePhoto" fitHeight="70.0" fitWidth="68.0" layoutX="437.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../../../../../Pictures/png-clipart-computer-icons-user-profile-avatar-profile-woman-desktop-wallpaper-thumbnail.png" />
                </image>
             </ImageView>
-            <Label layoutX="373.0" layoutY="36.0" text="Username" />
-            <Button fx:id="btnLogOut" layoutX="533.0" layoutY="31.0" mnemonicParsing="false" onAction="#directToHome" text="Log out" />
-            <Label layoutX="255.0" layoutY="64.0" text="User Account List" />
+            <Label layoutX="358.0" layoutY="19.0" prefHeight="21.0" prefWidth="74.0" text="Username" textFill="#0f36b9">
+               <font>
+                  <Font size="15.0" />
+               </font></Label>
+            <Button fx:id="btnLogOut" layoutX="512.0" layoutY="29.0" mnemonicParsing="false" onAction="#directToHome" style="-fx-background-color: gray;" text="Log out" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="15.0" />
+               </font></Button>
+            <Label alignment="CENTER" layoutX="207.0" layoutY="58.0" prefHeight="15.0" prefWidth="151.0" text="User Account List" textAlignment="CENTER" textFill="#2a4982">
+               <font>
+                  <Font name="Microsoft JhengHei UI Light" size="18.0" />
+               </font></Label>
          </children>
       </Pane>
       <TableView fx:id="tvUserAccountList" prefHeight="298.0" prefWidth="601.0" VBox.vgrow="ALWAYS">

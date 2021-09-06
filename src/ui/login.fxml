@@ -4,34 +4,56 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.paint.RadialGradient?>
+<?import javafx.scene.paint.Stop?>
 <?import javafx.scene.text.Font?>
-
 
 <VBox prefHeight="341.0" prefWidth="601.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <Pane fx:id="loginPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="514.0" prefWidth="601.0" style="-fx-background-color: gray;" VBox.vgrow="ALWAYS">
+      <Pane fx:id="loginPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="514.0" prefWidth="601.0" style="-fx-background-color: light gray;" VBox.vgrow="ALWAYS">
          <children>
-            <Label alignment="CENTER" layoutX="215.0" layoutY="107.0" prefHeight="24.0" prefWidth="203.0" text="Sign in to Classroom ">
+            <Label alignment="CENTER" layoutX="61.0" layoutY="162.0" prefHeight="32.0" prefWidth="261.0" text="Sign in to Classroom ">
                <font>
-                  <Font name="Microsoft JhengHei UI Bold" size="18.0" />
+                  <Font name="Microsoft JhengHei UI Bold" size="24.0" />
                </font>
+               <textFill>
+                  <RadialGradient centerX="0.37777777777777777" centerY="0.419047619047619" focusAngle="163.07" radius="0.8255813953488372">
+                     <stops>
+                        <Stop color="#0e97f878" />
+                        <Stop color="#386ec7" offset="1.0" />
+                     </stops>
+                  </RadialGradient>
+               </textFill>
             </Label>
-            <Label alignment="CENTER" layoutX="133.0" layoutY="176.0" prefHeight="24.0" prefWidth="203.0" text="Username:">
+            <Label alignment="CENTER" layoutY="241.0" prefHeight="24.0" prefWidth="203.0" text="Username:">
                <font>
                   <Font name="Microsoft JhengHei UI Bold" size="12.0" />
                </font>
             </Label>
-            <Label alignment="CENTER" layoutX="133.0" layoutY="215.0" prefHeight="24.0" prefWidth="203.0" text="Password:">
+            <Label alignment="CENTER" layoutX="-2.0" layoutY="284.0" prefHeight="24.0" prefWidth="203.0" text="Password:">
                <font>
                   <Font name="Microsoft JhengHei UI Bold" size="12.0" />
                </font>
             </Label>
-            <TextField fx:id="txtUsername" layoutX="279.0" layoutY="176.0" prefHeight="25.0" prefWidth="137.0" />
-            <PasswordField fx:id="passwordF" layoutX="278.0" layoutY="214.0" prefHeight="24.0" prefWidth="137.0" />
-            <Button fx:id="btnSignUp" layoutX="208.0" layoutY="264.0" mnemonicParsing="false" onAction="#directToCreateUserAccount" prefHeight="34.0" prefWidth="103.0" text="Sign Up" />
-            <Button fx:id="btnLogIn" layoutX="321.0" layoutY="264.0" mnemonicParsing="false" onAction="#showUserAccountList" prefHeight="34.0" prefWidth="103.0" text="Log in" />
+            <TextField fx:id="txtUsername" layoutX="144.0" layoutY="243.0" prefHeight="25.0" prefWidth="137.0" />
+            <PasswordField fx:id="passwordF" layoutX="144.0" layoutY="285.0" prefHeight="24.0" prefWidth="137.0" />
+            <Button fx:id="btnSignUp" layoutX="61.0" layoutY="352.0" mnemonicParsing="false" onAction="#directToCreateUserAccount" prefHeight="34.0" prefWidth="103.0" style="-fx-background-color: gray;" text="Sign Up" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="15.0" />
+               </font></Button>
+            <Button fx:id="btnLogIn" layoutX="175.0" layoutY="352.0" mnemonicParsing="false" onAction="#showUserAccountList" prefHeight="34.0" prefWidth="103.0" style="-fx-background-color: gray;" text="Log in" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="15.0" />
+               </font></Button>
+            <ImageView fitHeight="226.0" fitWidth="516.0" layoutX="229.0" layoutY="144.0" pickOnBounds="true" rotate="90.0">
+               <image>
+                  <Image url="@../../../../../Pictures/fondo-degradado-lineas-azules-dinamicas_23-2148995756.jpg" />
+               </image>
+            </ImageView>
          </children>
       </Pane>
    </children>
