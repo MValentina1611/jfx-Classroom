@@ -2,7 +2,6 @@ package model;
 
 import java.util.ArrayList;
 import java.util.List;
-
 public class Classroom {
 
 	private List<UserAccount> userAccountList;
@@ -10,15 +9,14 @@ public class Classroom {
 	public Classroom()
 	{
 		userAccountList = new ArrayList<UserAccount>();
-		userAccountList.add(new UserAccount("username","password","gender","career","birthday","browser", "urlProfilePhoto"));
+		userAccountList.add(new UserAccount("username","password","gender","career","birthday","browser", "urlProfilePhoto"));		
 	}
-	
-	
+			
 	public List<UserAccount> getUserAccountList() {
 		return userAccountList;
 	}
 
-	
+
 	public boolean  add( UserAccount newUserAccount )
 	{
 		if( userAccountList.add( newUserAccount ) )
@@ -42,11 +40,23 @@ public class Classroom {
 			{
 				match = true;
 			}	
-		}
-	
-		
+		}		
 		return match; 
 	}
 	
+	public boolean verifyFullFields(String [] userInfo )
+	{ 
+		boolean incompleteFields = false; 
+		
+		for(int i = 0; i < userInfo.length && !incompleteFields; i++ )
+		{
+			if( userInfo[i] == null ) 
+			{
+				incompleteFields = true;
+			}
+		}
+		
+		return incompleteFields;
+	}
 	
 }

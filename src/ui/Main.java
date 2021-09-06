@@ -32,10 +32,11 @@ public class Main extends Application  {
 		fxmlLoader.setController(classroomgui);
  		Parent root = fxmlLoader.load();
 		Scene scene = new Scene(root);
-				
+		
+		
 		primaryStage.setScene(scene);
 		primaryStage.setTitle("Classroom");
-		primaryStage.show();
+		//primaryStage.show();
 		
 		classroomgui.showLogin(mainPane);
 		//classroomgui.loadPane(mainPane);

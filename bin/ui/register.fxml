@@ -2,9 +2,10 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.CheckBox?>
-<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.MenuButton?>
+<?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.RadioButton?>
 <?import javafx.scene.control.TextField?>
@@ -15,7 +16,6 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
-
 
 <VBox fx:id="vbxCreateAccount" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="504.0" prefWidth="500.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
    <children>
@@ -58,22 +58,15 @@
             <PasswordField fx:id="passwordFCreate" GridPane.columnIndex="1" GridPane.rowIndex="1" />
             <Button fx:id="btnBrowser" mnemonicParsing="false" onAction="#searchProfilePhoto" prefHeight="25.0" prefWidth="61.0" text="Browser" GridPane.columnIndex="2" GridPane.rowIndex="2" />
             <TextField fx:id="txtUrlProfilePhoto" editable="false" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-            <Pane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
+            <Pane fx:id="paneForGender" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
                <children>
-                  <RadioButton fx:id="rbtnMale" layoutY="6.0" mnemonicParsing="false" text="Male">
+                  <RadioButton fx:id="rbtnMale" layoutY="12.0" mnemonicParsing="false" text="Male">
                      <toggleGroup>
                         <ToggleGroup fx:id="gender" />
                      </toggleGroup>
                   </RadioButton>
-                  <RadioButton fx:id="rbtnFemale" layoutX="66.0" layoutY="6.0" mnemonicParsing="false" text="Female" toggleGroup="$gender" />
-                  <RadioButton fx:id="rbtnOther" layoutX="144.0" layoutY="6.0" mnemonicParsing="false" text="Other" toggleGroup="$gender" />
-               </children>
-            </Pane>
-            <Pane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="4">
-               <children>
-                  <CheckBox fx:id="chbxTE" layoutX="14.0" layoutY="27.0" mnemonicParsing="false" text="Telematics Engineering" />
-                  <CheckBox fx:id="chbxSE" layoutX="14.0" layoutY="6.0" mnemonicParsing="false" text="Software Engineering" />
-                  <CheckBox fx:id="chbxIE" layoutX="14.0" layoutY="49.0" mnemonicParsing="false" text="Industrial Engineering" />
+                  <RadioButton fx:id="rbtnFemale" layoutX="87.0" layoutY="12.0" mnemonicParsing="false" text="Female" toggleGroup="$gender" />
+                  <RadioButton fx:id="rbtnOther" layoutX="163.0" layoutY="12.0" mnemonicParsing="false" text="Other" toggleGroup="$gender" />
                </children>
             </Pane>
             <DatePicker fx:id="dpBirthday" GridPane.columnIndex="1" GridPane.rowIndex="5" />
@@ -87,7 +80,20 @@
                   <Button fx:id="btnCreateAccount" layoutX="38.0" layoutY="2.0" mnemonicParsing="false" onAction="#createAccount" text="Create account" />
                </children>
             </Pane>
-            <ComboBox fx:id="cmbbxFBrowser" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+            <MenuButton fx:id="mnbtnFBrowser" mnemonicParsing="false" text="Choose your favorite browser" GridPane.columnIndex="1" GridPane.rowIndex="6">
+              <items>
+                <MenuItem fx:id="mniOperaB" mnemonicParsing="false" onAction="#setTextFieldtoOpera" text="Opera" />
+                <MenuItem fx:id="mniMicroEdgeB" mnemonicParsing="false" onAction="#setTextFieldtoMicroEdge" text="Microsoft Edge" />
+                  <MenuItem fx:id="mniGoogleChromeB" mnemonicParsing="false" onAction="#setTextFieldtoGoogleChrome" text="Google Chrome" />
+              </items>
+            </MenuButton>
+            <Pane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="4">
+               <children>
+                  <CheckBox fx:id="chbxTE" layoutY="6.0" mnemonicParsing="false" text="Telematic" />
+                  <CheckBox fx:id="chbxSE" layoutY="27.0" mnemonicParsing="false" text="Software" />
+                  <CheckBox fx:id="chbxIE" layoutY="49.0" mnemonicParsing="false" text="Industrial" />
+               </children>
+            </Pane>
          </children>
       </GridPane>
    </children>

@@ -2,11 +2,20 @@ package ui;
 
 import java.io.File;
 import java.io.IOException;
+import java.net.URL;
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.ResourceBundle;
+
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
+import javafx.geometry.Insets;
+import javafx.scene.Group;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
@@ -14,6 +23,8 @@ import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
+import javafx.scene.control.MenuButton;
+import javafx.scene.control.MenuItem;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TableColumn;
@@ -29,10 +40,11 @@ import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+import model.Browser;
 import model.Classroom;
 import model.UserAccount;
 
-public class ClassroomGUI {
+public class ClassroomGUI{
 
     @FXML
     private Pane loginPane;
@@ -88,6 +100,54 @@ public class ClassroomGUI {
     private TextField txtUrlProfilePhoto;
 
     @FXML
+    private DatePicker dpBirthday;
+
+    @FXML
+    private Button btnSigInFfromCreate;
+
+    @FXML
+    private Button btnCreateAccount;
+
+    @FXML
+    private Button btnBrowser;
+
+    @FXML
+    private GridPane gpCreateAccount;
+    
+    @FXML
+    private VBox vbxCreateAccount;
+    
+    @FXML
+    private MenuButton mnbtnFBrowser;
+
+    @FXML
+    private MenuItem mniOperaB;
+
+    @FXML
+    private MenuItem mniMicroEdgeB;
+
+    @FXML
+    private MenuItem mniGoogleChromeB;
+    
+    @FXML
+    private Pane paneForCheckbox;
+    
+    @FXML
+    private Pane paneForGender;
+
+    
+    private Classroom classroom;
+    
+    @FXML
+    private CheckBox chbxTE;
+
+    @FXML
+    private CheckBox chbxSE;
+
+    @FXML
+    private CheckBox chbxIE;
+    
+    @FXML
     private RadioButton rbtnMale;
 
     @FXML
@@ -99,48 +159,18 @@ public class ClassroomGUI {
     @FXML
     private RadioButton rbtnOther;
 
-    @FXML
-    private CheckBox chbxTE;
-
-    @FXML
-    private CheckBox chbxSE;
-
-    @FXML
-    private CheckBox chbxIE;
-
-    @FXML
-    private DatePicker dpBirthday;
-
-    @FXML
-    private Button btnSigInFfromCreate;
-
-    @FXML
-    private Button btnCreateAccount;
-
-    @FXML
-    private ComboBox<?> cmbbxFBrowser;
-
-    @FXML
-    private Button btnBrowser;
-
-    @FXML
-    private GridPane gpCreateAccount;
-    
-    @FXML
-    private VBox vbxCreateAccount;
-
-    
-    private Classroom classroom;
-    
    
+    
     //Builder
     public ClassroomGUI()
     {
     	loginStage = new Stage();
     	loginPane = new Pane();
     	classroom = new Classroom();
+	
     }
 
+	
     //getters and setters
     
 	public Pane getLoginPane() {
@@ -167,6 +197,7 @@ public class ClassroomGUI {
     	tcBrowser.setCellValueFactory(new PropertyValueFactory<UserAccount, String> ("browser"));
     }
 	
+
 	public void showLogin( Pane mainPane ) throws IOException
 	{
 
@@ -189,7 +220,7 @@ public class ClassroomGUI {
     	Parent register = fxmlLoader.load();
     	loginPane.getChildren().setAll( register );
     }
-
+    
     @FXML
     public void showUserAccountList( ActionEvent event) throws IOException 
     {
@@ -222,12 +253,10 @@ public class ClassroomGUI {
             fileChooser.setTitle("Search Profile Photo");
                
             fileChooser.getExtensionFilters().addAll(
-                    new FileChooser.ExtensionFilter("All Images", "*.*"),
                     new FileChooser.ExtensionFilter("JPG", "*.jpg"),
                     new FileChooser.ExtensionFilter("PNG", "*.png")
             );
-
-                  
+             
             Stage stage = (Stage)vbxCreateAccount.getScene().getWindow();
             		
            File imgFile = fileChooser.showOpenDialog( stage );
@@ -235,23 +264,161 @@ public class ClassroomGUI {
             txtUrlProfilePhoto.setText(imgFile.getAbsolutePath());
     }
     
+    @FXML
+    public void setTextFieldtoGoogleChrome(ActionEvent event) 
+    {
+    	mnbtnFBrowser.setText(mniGoogleChromeB.getText());
+    }
 
+    @FXML
+    public void setTextFieldtoMicroEdge(ActionEvent event) 
+    {
+    	mnbtnFBrowser.setText(mniMicroEdgeB.getText());
+    }
+
+    @FXML
+    public void setTextFieldtoOpera(ActionEvent event) 
+    {
+    	mnbtnFBrowser.setText(mniOperaB.getText());
+    }
+   
+    public String  getBirthday()
+    {
+    	String birthday = null;
+    	LocalDate bdate = dpBirthday.getValue();
+    	if( bdate != null )
+    	{
+    		birthday = bdate.toString();
+    	}
+    		
+    	return birthday;
+    }
+    
+    public String getGender()
+    {
+    	String genderString = "";
+    	
+    	if (gender.getSelectedToggle().toString().equals("RadioButton[id=rbtnMale, styleClass=radio-button]'Male'")) 
+    	{
+             genderString ="Male";
+        }
+        else if (gender.getSelectedToggle().toString().equals("RadioButton[id=rbtnFemale, styleClass=radio-button]'Female'")) 
+        {
+            genderString ="Female";
+        }
+        else 
+        {
+            genderString ="Other";
+        }
+    	
+    	return genderString;
+    }
+    
+    public String getCareers()
+    {
+    	String career = "";
+    		
+    	if(chbxTE.isSelected())
+    	{
+    		career +=  chbxTE.getText() +"";
+    	}
+    	
+    	if(chbxSE.isSelected())
+    	{
+    		career += chbxSE.getText() +"";
+    	}
+    	
+    	if(chbxIE.isSelected())
+    	{
+    		career += chbxSE.getText() +"";
+    	}
+    	
+    	return career;
+    }
+    
+    public String[] getUserInfo()
+    {
+    	String username,
+    			password,
+    			urlPhoto,
+    			genderString,
+    			career,
+    			birthday,
+    			browser;
+    	
+    	
+    	username = txtCreateUsername.getText(); 
+    	password = passwordFCreate.getText();
+    	urlPhoto = txtUrlProfilePhoto.getText();
+    	birthday = getBirthday();
+    	genderString = getGender();
+    	career = getCareers();
+    	browser = mnbtnFBrowser.getText();
+    	
+    	String[] userInfo = {username, password, genderString, career, birthday, browser, urlPhoto };
+    	
+    	return userInfo;
+    }
+     
+    
     
     @FXML
-    public void directToHome(ActionEvent event) 
+    public void createAccount(ActionEvent event) 
     {
+    	if(  classroom.verifyFullFields( getUserInfo() ) == true )   
+    	{
+    		
+    		
+    		classroom.add(new UserAccount(getUserInfo()[0], getUserInfo()[1], getUserInfo()[2], getUserInfo()[3], 
+    				getUserInfo()[4], getUserInfo()[5], getUserInfo()[6]  ));
+    		
+    		
+			Alert alert = new Alert(AlertType.INFORMATION);
+	    	alert.setTitle("Account created");
+	    	alert.setHeaderText("WELCOME!");
+	    	alert.setContentText("The new account has been created");
+	    	alert.showAndWait();
 
+    	}
+    	else
+    	{
+			Alert alert = new Alert(AlertType.ERROR);
+	    	alert.setTitle("Validation Error");
+	    	alert.setHeaderText("ERROR");
+	    	alert.setContentText("You must fill each field in the form");
+	    	alert.showAndWait();
+    	}
+    	
+    	
+    }
+
+   
+    
+    @FXML
+    public void directToHomeFromCreate(ActionEvent event) throws IOException 
+    {
+		FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("login.fxml"));
+		fxmlLoader.setController(this);
+		Parent root = fxmlLoader.load();
+		Scene scene = new Scene(root);
+		loginStage.setScene(scene);
+		loginStage.setTitle("Classroom");
+		loginStage.show(); 
+		
     }
 
     @FXML
-    void createAccount(ActionEvent event) {
-
+    public void directToHome(ActionEvent event) throws IOException 
+    {
+		FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("login.fxml"));
+		fxmlLoader.setController(this);
+		Parent root = fxmlLoader.load();
+		Scene scene = new Scene(root);
+		loginStage.setScene(scene);
+		loginStage.setTitle("Classroom");
+		loginStage.show(); 
     }
 
-    @FXML
-    void directToHomeFromCreate(ActionEvent event) {
-
-    }
 
 
   
