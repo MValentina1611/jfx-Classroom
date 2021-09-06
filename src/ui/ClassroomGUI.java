@@ -2,26 +2,17 @@ package ui;
 
 import java.io.File;
 import java.io.IOException;
-import java.net.URL;
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.ResourceBundle;
-
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.fxml.Initializable;
-import javafx.geometry.Insets;
-import javafx.scene.Group;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
-import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.MenuButton;
 import javafx.scene.control.MenuItem;
@@ -40,7 +31,6 @@ import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
-import model.Browser;
 import model.Classroom;
 import model.UserAccount;
 
@@ -89,6 +79,8 @@ public class ClassroomGUI{
     
     @FXML
     private ImageView imgProfilePhoto;
+    
+    //private Image imageProfilePhoto;
     
     @FXML
     private TextField txtCreateUsername;
@@ -167,6 +159,7 @@ public class ClassroomGUI{
     	loginStage = new Stage();
     	loginPane = new Pane();
     	classroom = new Classroom();
+    	
 	
     }
 
@@ -226,7 +219,7 @@ public class ClassroomGUI{
     {
     	String userNI = txtUsername.getText();
     	String passwordI = passwordF.getText();
-    	
+    	int pos = 0;
     	if( classroom.verifyUser( userNI, passwordI ) )
     	{
          	FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("account-list.fxml"));
@@ -234,8 +227,13 @@ public class ClassroomGUI{
         	Parent accountList = fxmlLoader.load();
         	loginPane.getChildren().setAll( accountList );
         	
+        	pos = classroom.userPos(userNI, passwordI );
+            imgProfilePhoto.setImage(classroom.getUserAccountList().get(pos).getUrlProfilePhoto());
+        	
         	initializeTableView();
+            	
     	}
+    	
     	else
     	{
 			Alert alert = new Alert(AlertType.ERROR);
@@ -260,8 +258,14 @@ public class ClassroomGUI{
             Stage stage = (Stage)vbxCreateAccount.getScene().getWindow();
             		
            File imgFile = fileChooser.showOpenDialog( stage );
-            
-            txtUrlProfilePhoto.setText(imgFile.getAbsolutePath());
+           
+           if(imgFile !=null) 
+           {
+        	   txtUrlProfilePhoto.setText(imgFile.getAbsolutePath());
+               Classroom.profilePhoto = new Image ("file:"+imgFile.getAbsolutePath()); 
+                    
+           }
+           
     }
     
     @FXML
@@ -365,21 +369,18 @@ public class ClassroomGUI{
     @FXML
     public void createAccount(ActionEvent event) 
     {
-    	if(  classroom.verifyFullFields( getUserInfo() ) == true )   
-    	{
-    		
-    		
+    	if(  classroom.verifyFullFields( getUserInfo() ) == false )   
+    	{	
     		classroom.add(new UserAccount(getUserInfo()[0], getUserInfo()[1], getUserInfo()[2], getUserInfo()[3], 
-    				getUserInfo()[4], getUserInfo()[5], getUserInfo()[6]  ));
-    		
-    		
+    				getUserInfo()[4], getUserInfo()[5], Classroom.profilePhoto ));
+    					
 			Alert alert = new Alert(AlertType.INFORMATION);
 	    	alert.setTitle("Account created");
 	    	alert.setHeaderText("WELCOME!");
 	    	alert.setContentText("The new account has been created");
 	    	alert.showAndWait();
-
     	}
+    	
     	else
     	{
 			Alert alert = new Alert(AlertType.ERROR);

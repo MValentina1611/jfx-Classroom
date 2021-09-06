@@ -1,5 +1,7 @@
 package model;
 
+import javafx.scene.image.Image;
+
 public class UserAccount {
 	
 	private String username;
@@ -8,11 +10,11 @@ public class UserAccount {
 	private String career;
 	private String birthday; 
 	private String browser;
-	private String urlProfilePhoto;
+	private Image urlProfilePhoto;
 	
 	public UserAccount(String username, String password, String gender, String career, String birthday, String browser,
-			String urlProfilePhoto) {
-		super();
+			Image urlProfilePhoto) {
+		
 		this.username = username;
 		this.password = password;
 		this.gender = gender;
@@ -43,11 +45,11 @@ public class UserAccount {
 	
 	
 	
-	public String getUrlProfilePhoto() {
+	public Image getUrlProfilePhoto() {
 		return urlProfilePhoto;
 	}
 
-	public void setUrlProfilePhoto(String urlProfilePhoto) {
+	public void setUrlProfilePhoto(Image urlProfilePhoto) {
 		this.urlProfilePhoto = urlProfilePhoto;
 	}
 

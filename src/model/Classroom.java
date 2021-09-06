@@ -2,14 +2,17 @@ package model;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import javafx.scene.image.Image;
 public class Classroom {
 
 	private List<UserAccount> userAccountList;
+	public static Image profilePhoto;  
 	
 	public Classroom()
 	{
 		userAccountList = new ArrayList<UserAccount>();
-		userAccountList.add(new UserAccount("username","password","gender","career","birthday","browser", "urlProfilePhoto"));		
+		userAccountList.add(new UserAccount("username","password","gender","career","birthday","browser", profilePhoto));		
 	}
 			
 	public List<UserAccount> getUserAccountList() {
@@ -58,5 +61,23 @@ public class Classroom {
 		
 		return incompleteFields;
 	}
+	
+	public int userPos(String username,String password) 
+	{
+        int pos=-1;
+        
+        for(int i=0; i< userAccountList.size();i++) 
+        {
+            if(username.equals(userAccountList.get(i).getUsername()) && 
+            		password.equals(userAccountList.get(i).getPassword())) 
+            {
+                pos=i;
+            }
+        }
+        
+        return pos;
+
+    }
+	
 	
 }
